@@ -21,17 +21,38 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const CustomDialog = ({toggleModal, status, data, loading}) => {
 
+    // console.log("DIALOG", data)
+    if(!data) return <></>;
 
-    const buildingData = data?.features[0];
 
-    const buildingName = buildingData?.place_name.split(',')[0]
-    const buildingArea = buildingData?.place_name.split(',')[1] + buildingData?.place_name.split(',')[2];
-    const buildingType = buildingData?.properties?.category
-    const detailInfo = buildingData?.place_name.split(',')[3] + buildingData?.place_name.split(',')[4]
+    const buildingData = data
+
+
+    const buildingName =    data?.['Building name'] || '';
+    const buildingNumber =  data?.['Building number'] || ''
+    const name = data?.['name'] || '';
+    const noOfUnits = data?.['No of Units'] || ''
+    const totalAreaInSqt = data?.['Total gross area in sqt of building'] || '';
+    const city = data?.['city'] || '';
+    const currentNFT_Price = data?.['current NFT price'] || '';
+    const priceInEuro = data?.['current price in £'];
+    const image = data?.['image'];
+    const owner = data?.['owner'] || '';
+    const postCode = data?.['postcode'];
+    const priceInPound = data?.['price in sq in £'];
+    const roadName = data?.['road name'];
+    const streetName = data?.['street name'];
+
+    const buildingArea = '1' ||buildingData?.place_name.split(',')[1] + buildingData?.place_name.split(',')[2];
+    const buildingType = '2' || buildingData?.properties?.category
+    const detailInfo =  '3' || buildingData?.place_name.split(',')[3] + buildingData?.place_name.split(',')[4]
 
     const copyAddressHandler = (text) => navigator.clipboard.writeText(text)
 
-    console.log(buildingData);
+    const handleTransfer = () => {
+        alert('Transfer Data');
+    }
+
 
     return (
         <Dialog
@@ -62,7 +83,7 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                                 id="buildingArea"
                                 label="Building Area"
                                 variant="outlined"
-                                value={buildingArea}
+                                value={totalAreaInSqt}
                                 fullWidth
                                 InputProps={{ readOnly: true }}
                             />
@@ -71,10 +92,10 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                     <Grid item container spacing={1}>
                         <Grid item xs>
                             <TextField
-                                id="buildingType"
-                                label="Building Type"
+                                id="buildingNumber"
+                                label="Building Number"
                                 variant="outlined"
-                                value={buildingType || ' '}
+                                value={buildingNumber || ' '}
                                 fullWidth
                                 InputProps={{ readOnly: true }}
                             />
@@ -82,10 +103,10 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
 
                         <Grid item xs>
                             <TextField
-                                id="details"
-                                label="Country"
+                                id="city"
+                                label="City"
                                 variant="outlined"
-                                value={detailInfo}
+                                value={city || ''}
                                 fullWidth
                             />
                         </Grid>
@@ -96,11 +117,11 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                                 id='ownerWalletAddress'
                                 label='Owner Wallet Address'
                                 variant='outlined'
-                                value={'0x3b9bA781797b57872687Ce5d5219A1A4Bc0e85ea'}
+                                value={owner || ''}
                                 fullWidth
                                 InputProps={{
                                     endAdornment: <Tooltip title='Copy Address' arrow>
-                                        <IconButton onClick={() => copyAddressHandler('Junaid')}>
+                                        <IconButton onClick={() => copyAddressHandler(owner)}>
                                             <ContentCopy/>
                                         </IconButton>
                                     </Tooltip>
@@ -117,7 +138,7 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                                 fullWidth
                                 InputProps={{
                                     endAdornment: <Tooltip title='Send' arrow>
-                                        <IconButton>
+                                        <IconButton onClick={handleTransfer}>
                                             <Send/>
                                         </IconButton>
                                     </Tooltip>

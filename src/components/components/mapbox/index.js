@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import mapboxgl from 'mapbox-gl'
 import useLoadMapbox from "../../../hooks/useLoadMapbox";
 import {useCustomPlaces, useUpdateMapboxData} from "../../../hooks";
@@ -6,30 +6,103 @@ import useAddImageMapbox from "../../../hooks/useAddImageMapbox";
 import useAddSearchBox from "../../../hooks/useAddSearchBox";
 import CustomDialog from "../../Dialog";
 
+import ABI from '../../../contract/GameRee1155.json'
+import {NFT_addr} from '../../../contract/addresses'
+
+import { useWeb3React } from "@web3-react/core";
+
+import { ethers } from "ethers";
+import Web3Modal from 'web3modal'
+
 
 mapboxgl.accessToken = `pk.eyJ1IjoiaGFzZWViYWJiYXNpMDAiLCJhIjoiY2wyejVqcWVsMDkzcjNjbDdocWI4dzA0cSJ9.mB8mVHePsaB0wmqbIE9f1Q`;
 
 
 const Mapbox = () => {
+
     const [loading, setLoading] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [buildingData, SetBuilding] = useState(null)
     const [ProfileIsOpen, setProfileIsOpen] = useState(false);
+    const [metadata, setMetadata] = useState([]);
+
+
+    const {
+        connector,
+        library,
+        account,
+        chainId,
+        activate,
+        deactivate,
+        active,
+        errorWeb3Modal
+    } = useWeb3React();
 
 
     const {map, mapContainer, setLat, setZoom, setLng, lng, lat, zoom} = useLoadMapbox()
     useUpdateMapboxData({setLng, setLat, setZoom, map});
-    useCustomPlaces(map);
-    useAddImageMapbox(map);
-    useAddSearchBox(map);
+    // useCustomPlaces(map);
+    // useAddImageMapbox(map);
+    // useAddSearchBox(map);
+
+
+    useEffect( ()=>{
+        (async () => {
+            const data = await getMetadata();
+            // console.log({data}, '***************')
+            setMetadata(data)
+        })()
+    },[])
+
+    // console.log(metadata, '****');
+
+    const loadProvider = async () => {
+        try {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            return provider.getSigner();
+        }
+        catch (e) {
+            console.log("loadProvider: ", e)
+            
+        }
+    }
+
+    const getMetadata = useCallback(
+        async () => {
+            try {
+
+                let signer = await loadProvider()
+                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
+                let arr = []
+                for (let index = 1; index < 4; index++) {
+                    let uri = await NFTCrowdsaleContract.uri(index)
+                    // console.log(uri)
+                    let owner = await NFTCrowdsaleContract.ownerOf(index)
+                    let response  = await fetch(uri, {method: 'GET'})
+                    const data = await response.json();
+                    // console.log({response,data})
+                    data.owner = owner
+                    arr.push(data)
+                    //let _price = await NFTCrowdsaleContract.getRoundPrice(round)
+                }
+                return arr;
+            } catch (e) {
+                console.error("data", e)
+            }
+        },
+        [],
+    );
+
 
     // Fullscreen Control Button
-    useEffect(() => {
+    /*useEffect(() => {
         if(!map.current) return;
         map.current.addControl(new mapboxgl.FullscreenControl({container: document.getElementById('junaid')}));
         map.current.addControl(new mapboxgl.NavigationControl());
 
-    }, []);
+    }, []);*/
 
 
 
@@ -38,8 +111,9 @@ const Mapbox = () => {
         const _map = map.current;
         _map.on("click", (e) => {
             setProfileIsOpen(false);
+
             const {lngLat, point, target, originalEvent} = e;
-            console.log({lngLat, point, target, originalEvent})
+            // console.log({lngLat, point, target, originalEvent})
 
             // Create a default Marker and add it to the map.
             // const marker1 = new mapboxgl.Marker(
@@ -54,27 +128,44 @@ const Mapbox = () => {
             // console.log('IN_MAPBOX', features);
 
             //should return click type either its building
-            const clickType = features[0].sourceLayer;
+            const clickType = features[0]?.sourceLayer;
 
-            // console.log('IN_MAPBOX', clickType);
+            console.log('IN_MAPBOX', clickType);
 
             // console.log("in mapbox ", features[0].sourceLayer);
             if (clickType === "C100" || clickType === "features_6-0bwjdi") {
                 setLoading(true);
+                console.log('USE_EFFECT', metadata)
                 const point = e.lngLat;
+              //  if()
                 fetch(
                     `https://api.mapbox.com/geocoding/v5/mapbox.places/${point.lng},${point.lat}.json?limit=1&access_token=pk.eyJ1IjoiaGFzZWViYWJiYXNpMDAiLCJhIjoiY2wyejVqcWVsMDkzcjNjbDdocWI4dzA0cSJ9.mB8mVHePsaB0wmqbIE9f1Q`
                 )
                     .then((data) => data.json())
                     .then((json) => {
-                        console.log(json);
-                        SetBuilding(json);
-                        setLoading(false);
+                        const selectedCity = json.features[0].text
+                        // console.log("data",json);
+                        if( ['Calzedonia','Sunglass Hut', 'Chapel Place','Vere Street','Chapel Fm Rd','Consulate General of Brazil','Dering Street','The Tea Terrace'].includes(selectedCity)){
+                            SetBuilding(metadata[0]);
+                            setIsOpen(true);
+                            setLoading(false);
+                        }else if(['Oxford Street','Cavendish Place','Cavendish Square','New Cavendish Street','UNIQLO','Westminster University Theatre'].includes(selectedCity)){
+                            SetBuilding(metadata[1]);
+                            setIsOpen(true);
+                            setLoading(false);
+                        }else if(['Old Cavendish Street'].includes(selectedCity)){
+                            SetBuilding(metadata[2]);
+                            setIsOpen(true);
+                            setLoading(false);
+                        }else{
+                            setLoading(false);
+                        }
+                        
                     })
                     .catch((e) => {
+                        console.error(e);
                         setLoading(false);
                     });
-                setIsOpen(true);
             }
         });
 
@@ -87,7 +178,7 @@ const Mapbox = () => {
         _map.on('mouseleave', 'C100', () => {
             _map.getCanvas().style.cursor = '';
         });
-    }, [map]);
+    }, [map,metadata]);
 
     const toggleModal = () => setIsOpen(prevState => !prevState)
 
