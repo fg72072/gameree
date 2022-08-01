@@ -11,19 +11,32 @@ import {
     TextField, Tooltip
 } from "@mui/material";
 
+import React, {useCallback, useEffect, useState} from 'react'
+
 import {forwardRef} from 'react'
 import {AccountCircle, Send} from "@material-ui/icons";
 import {ContentCopy} from "@mui/icons-material";
+
+import ABI from '../contract/GameRee1155.json'
+import {NFT_addr} from '../contract/addresses'
+
+import { useWeb3React } from "@web3-react/core";
+
+import { ethers } from "ethers";
+import Web3Modal from 'web3modal'
+
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const CustomDialog = ({toggleModal, status, data, loading}) => {
+const CustomDialog = ({toggleModal, status, data, loading }) => {
 
     // console.log("DIALOG", data)
+    const [to , setTo] = useState('')
     if(!data) return <></>;
 
+    const ids = ['57896044618658097711785492504343953927315557066662158946655541218820101242881','57896044618658097711785492504343953927315557066662158946655541218820101242882','57896044618658097711785492504343953927315557066662158946655541218820101242883']
 
     const buildingData = data
 
@@ -42,6 +55,9 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
     const priceInPound = data?.['price in sq in £'];
     const roadName = data?.['road name'];
     const streetName = data?.['street name'];
+    const id = data?.['id'];
+    const _account =data?.['account'] 
+  
 
     const buildingArea = '1' ||buildingData?.place_name.split(',')[1] + buildingData?.place_name.split(',')[2];
     const buildingType = '2' || buildingData?.properties?.category
@@ -53,6 +69,38 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
         alert('Transfer Data');
     }
 
+    
+
+    
+
+
+    const loadProvider = async () => {
+        try {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            return provider.getSigner();
+        }
+        catch (e) {
+            console.log("loadProvider: ", e)
+            
+        }
+    }
+
+    const transfer = 
+        async () => {
+            try {
+
+                let signer = await loadProvider()
+                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
+                const account =await signer.getAddress()
+                console.log(account,to,id)
+                let tx = await NFTCrowdsaleContract.safeTransferFrom(account , to , ids[Number(id) - 1] , 1 , [])
+                tx = await tx.wait()
+            } catch (e) {
+                console.error("data", e)
+            }
+        }
 
     return (
         <Dialog
@@ -129,16 +177,20 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                             />
                         </Grid>
                     </Grid>
+                    {
+                        _account === owner ?
+                    
                     <Grid item container>
                         <Grid item xs>
                             <TextField
                                 id='walletAddress'
                                 label='Transferred To'
                                 variant='outlined'
+                                onChange={(e)=>setTo(e.target.value)}
                                 fullWidth
                                 InputProps={{
                                     endAdornment: <Tooltip title='Send' arrow>
-                                        <IconButton onClick={handleTransfer}>
+                                        <IconButton onClick={transfer}>
                                             <Send/>
                                         </IconButton>
                                     </Tooltip>
@@ -146,6 +198,7 @@ const CustomDialog = ({toggleModal, status, data, loading}) => {
                             />
                         </Grid>
                     </Grid>
+:null}
 
                 </Grid>
             </DialogContent>

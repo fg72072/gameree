@@ -25,6 +25,8 @@ const Mapbox = () => {
     const [buildingData, SetBuilding] = useState(null)
     const [ProfileIsOpen, setProfileIsOpen] = useState(false);
     const [metadata, setMetadata] = useState([]);
+    const ids = ['57896044618658097711785492504343953927315557066662158946655541218820101242881','57896044618658097711785492504343953927315557066662158946655541218820101242882','57896044618658097711785492504343953927315557066662158946655541218820101242883']
+
 
 
     const {
@@ -76,14 +78,17 @@ const Mapbox = () => {
                 let signer = await loadProvider()
                 let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
                 let arr = []
+                const caccount =await signer.getAddress()
                 for (let index = 1; index < 4; index++) {
                     let uri = await NFTCrowdsaleContract.uri(index)
                     // console.log(uri)
-                    let owner = await NFTCrowdsaleContract.ownerOf(index)
+                    let owner = await NFTCrowdsaleContract.ownerOf(ids[index-1])
                     let response  = await fetch(uri, {method: 'GET'})
                     const data = await response.json();
                     // console.log({response,data})
                     data.owner = owner
+                    data.id = index
+                    data.account = caccount
                     arr.push(data)
                     //let _price = await NFTCrowdsaleContract.getRoundPrice(round)
                 }
@@ -191,7 +196,7 @@ const Mapbox = () => {
             </div>
             <div style={{width: '50px', height: '50px', position: 'absolute', top: 30}}/>
         </div>
-        <CustomDialog toggleModal={toggleModal} status={modalIsOpen} data={buildingData} loading={loading}/>
+        <CustomDialog toggleModal={toggleModal} status={modalIsOpen} data={buildingData} loading={loading} />
     </>
 }
 
