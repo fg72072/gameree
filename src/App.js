@@ -18,6 +18,7 @@ import ResetVerification from "./components/pages/reserVerification";
 import Dashboard from "./components/components/dashboard/Dashboard";
 import { gapi } from "gapi-script";
 import GoogleClientId from "./GoogleClientId";
+import Mapbox from "./components/components/mapbox";
 /**
  *  Unimportant 
  * *
@@ -69,6 +70,7 @@ function App() {
             <ForgotPassword path="/forgotPassword" />
             <Party path="/party" />
             <OldMap path="/landmap"></OldMap>
+            <Mapbox path='/map'></Mapbox>
             <WalletCustom path="/wallet" />
             <SignIn path="/signIn" />
 
