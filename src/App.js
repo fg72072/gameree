@@ -15,6 +15,7 @@ import Terms from "./components/pages/termsAndCondition/Terms";
 import Condition from "./components/pages/termsAndCondition/Condition";
 import ForgotPassword from "./components/pages/auth/ForgotPassword";
 import ResetVerification from "./components/pages/reserVerification";
+import Dashboard from "./components/components/dashboard/Dashboard";
 import { gapi } from "gapi-script";
 import GoogleClientId from "./GoogleClientId";
 /**
@@ -78,6 +79,7 @@ function App() {
 
             <SignUp path="signUp" />
             <BusinessMeeting path="/business-meeting" />
+            <Dashboard path="/dashboard" />
           </ScrollTop>
         </PosedRouter>
       </ParallaxProvider>
