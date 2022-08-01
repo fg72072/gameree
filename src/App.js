@@ -70,7 +70,7 @@ function App() {
             <ForgotPassword path="/forgotPassword" />
             <Party path="/party" />
             <OldMap path="/landmap"></OldMap>
-            <Mapbox path='/map'></Mapbox>
+            <Mapbox path='/landmap/:id'></Mapbox>
             <WalletCustom path="/wallet" />
             <SignIn path="/signIn" />
 
