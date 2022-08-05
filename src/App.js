@@ -94,7 +94,7 @@ function App() {
             <BusinessMeeting path="/business-meeting" />
             <Dashboard path="/dashboard" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
             <NftSell path="/nft-sell" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
-            <MyCollection path="/my-collection" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <MyCollection path="/collection" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
           
           </ScrollTop>
         </PosedRouter>

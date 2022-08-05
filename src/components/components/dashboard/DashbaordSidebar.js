@@ -108,11 +108,11 @@ return   <React.Fragment>
     sx={{
         border: "1px solid #f1f1f1",
     }}
-    onClick={(e)=>nav('/my-collection')}>
+    onClick={(e)=>nav('/collection')}>
   <ListItemIcon>
     <img src={collection} />
   </ListItemIcon>
-  <ListItemText className="text-grey" primary="My Collection" />
+  <ListItemText className="text-grey" primary="Collection" />
 </ListItemButton>
 <ListItemButton
   className="justify-content-center px-5 mt-2 list-main"

@@ -94,6 +94,7 @@ export default function CertificateModal({
                 }
 
                 setLoading(false)
+                window.location.reload()
 
             } catch (e) {
                 console.error("data", e)
