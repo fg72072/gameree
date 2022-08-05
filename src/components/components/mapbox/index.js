@@ -77,12 +77,19 @@ const Mapbox = () => {
                 let arr = []
                 const caccount = await signer.getAddress()
                 for (let index = 1; index < 4; index++) {
-                    let uri = await NFTCrowdsaleContract.uri(index)
-                    // console.log(uri)
-                    let owner = await NFTCrowdsaleContract.ownerOf(ids[index - 1])
+                    
+                   let uri = await NFTCrowdsaleContract.uri(index)
+                    console.log(uri)
+                    let owner 
+                    try {
+                    owner = await NFTCrowdsaleContract.ownerOf(ids[index - 1])
+                        
+                    } catch (error) {
+                    owner = '0x0000000000000000000000000000000000000000'
+                    }
                     let response = await fetch(uri, {method: 'GET'})
                     const data = await response.json();
-                    // console.log({response,data})
+                    console.log({response,data})
                     data.owner = owner
                     data.id = index
                     data.account = caccount
@@ -190,7 +197,7 @@ const Mapbox = () => {
         const _map = map.current;
 
         _map.on('load', () => {
-            _map.addSource('maine', {
+            /*_map.addSource('maine', {
                 'type': 'geojson',
                 'data': {
                     "features": [
@@ -5166,10 +5173,10 @@ const Mapbox = () => {
                     ],
                     "type": "FeatureCollection"
                 }
-            })
+            })*/
 
         // Add a new layer to visualize the polygon.
-        _map.addLayer({
+        /*_map.addLayer({
             'id': 'maine',
             'type': 'fill',
             'source': 'maine', // reference the data source
@@ -5178,9 +5185,9 @@ const Mapbox = () => {
                 'fill-color': '#0080ff', // blue color fill
                 'fill-opacity': 0.5
             }
-        });
+        });*/
 
-           _map.addLayer({
+           /*_map.addLayer({
             'id': 'features_6-0bwjdi',
             'type': 'fill',
             'source': 'features_6-0bwjdi', // reference the data source
@@ -5189,7 +5196,7 @@ const Mapbox = () => {
                 'fill-color': '#0080ff', // blue color fill
                 'fill-opacity': 0.5
             }
-        });
+        });*/
             const layers = _map.getStyle().layers;
             const labelLayerId = layers.find(
                 (layer) => layer.type === 'symbol' && layer.layout['text-field']
@@ -5234,7 +5241,7 @@ const Mapbox = () => {
             );
 
 
-            _map.addLayer({
+            /*_map.addLayer({
                 'id': 'features_6-0bwjdi',
                 'type': 'symbol',
                 'source': 'places',
@@ -5245,7 +5252,7 @@ const Mapbox = () => {
                     'text-justify': 'auto',
                     'icon-image': ['get', 'icon']
                 }
-            });
+            });*/
     })
 
 

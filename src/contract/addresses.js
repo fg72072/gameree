@@ -1,3 +1,3 @@
 
- export const NFT_addr = "0x09635F643e140090A9A8Dcd712eD6285858ceBef"
- export const gBPG_addr = "0x7a2088a1bFc9d81c55368AE168C2C02570cB814F"
+ export const NFT_addr = "0x0de0Aad8BB8CeA4A0cEC4a90Cca17D1e6084e8D6"
+ export const gBPG_addr = "0x9d9b42B849b58C669668F006a49444E13a751062"

@@ -6,10 +6,15 @@ import {CircularProgress, Grid} from '@mui/material';
 import collectionnft from "../assets/images/collection-nft.png";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
-import {NFT_addr} from "../contract/addresses";
+import {NFT_addr , gBPG_addr} from "../contract/addresses";
 import ABI from "../contract/GameRee1155.json";
+import TokenABI from "../contract/GBPG.json";
 import truncateEthAddress from "../helpers/truncateWalletAddress";
 import {useState} from "react";
+
+import { useWeb3React } from "@web3-react/core";
+
+
 
 export default function CertificateModal({
                                              btnText = 'MINT',
@@ -19,62 +24,7 @@ export default function CertificateModal({
                                              data,
                                              loading
                                          }) {
-    const [error, setError] = useState('');
 
-
-    if (!data) return <></>;
-
-    const ids = ['57896044618658097711785492504343953927315557066662158946655541218820101242881', '57896044618658097711785492504343953927315557066662158946655541218820101242882', '57896044618658097711785492504343953927315557066662158946655541218820101242883']
-
-    const buildingName = data?.['Building name'] || '';
-    const buildingNumber = data?.['Building number'] || ''
-    const name = data?.['name'] || '';
-    const noOfUnits = data?.['No of Units'] || ''
-    const totalAreaInSqt = data?.['Total gross area in sqt of building'] || '';
-    const city = data?.['city'] || '';
-    const currentNFT_Price = data?.['current NFT price'] || '';
-    const priceInEuro = data?.['current price in £'];
-    const image = data?.['image'];
-    const owner = data?.['owner'] || '';
-    const postCode = data?.['postcode'];
-    const priceInPound = data?.['price in sq in £'];
-    const roadName = data?.['road name'];
-    const streetName = data?.['street name'];
-    const id = data?.['id'];
-    const _account = data?.['account']
-
-
-    const onClickHandler = (e) => {
-        e.preventDefault();
-
-    }
-
-    const loadProvider = async () => {
-        try {
-            const web3Modal = new Web3Modal();
-            const connection = await web3Modal.connect();
-            const provider = new ethers.providers.Web3Provider(connection);
-            return provider.getSigner();
-        } catch (e) {
-            console.log("loadProvider: ", e)
-
-        }
-    }
-
-    // const transfer =
-    //     async () => {
-    //         try {
-
-    //             let signer = await loadProvider()
-    //             let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
-    //             const account = await signer.getAddress()
-    //             console.log(account, to, id)
-    //             let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
-    //             tx = await tx.wait()
-    //         } catch (e) {
-    //             console.error("data", e)
-    //         }
-    //     }
 
 
     return (
