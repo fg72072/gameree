@@ -33,8 +33,10 @@ root.render(
     <Provider store={store}>
         
             <MoralisProvider
-                serverUrl="https://wx27lerry8wp.usemoralis.com:2053/server"
-                appId="6Tnv3d3wbzE6y6yPIJH36u8Q07dmqMq7vrmjrDNC"
+                // serverUrl="https://wx27lerry8wp.usemoralis.com:2053/server"
+                // appId="6Tnv3d3wbzE6y6yPIJH36u8Q07dmqMq7vrmjrDNC"
+                serverUrl="https://lyd7qxufgy7q.usemoralis.com:2053/server"
+                appId="kHfSntBY6Lu5iWCCPF4HaHCf6PDTXxuYbiEq9YBx"
             >
 
                 {/* <GoogleReCaptchaProvider key={process.env.CAPTCHA_SITE_KEY}> */}

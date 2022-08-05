@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -6,14 +7,12 @@ import {CircularProgress, Grid} from '@mui/material';
 import collectionnft from "../assets/images/collection-nft.png";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
-import {NFT_addr , gBPG_addr} from "../contract/addresses";
+import {gBPG_addr, NFT_addr} from "../contract/addresses";
 import ABI from "../contract/GameRee1155.json";
 import TokenABI from "../contract/GBPG.json";
 import truncateEthAddress from "../helpers/truncateWalletAddress";
-import {useState} from "react";
 
-import { useWeb3React } from "@web3-react/core";
-
+import {useWeb3React} from "@web3-react/core";
 
 
 export default function CertificateModal({
@@ -24,17 +23,18 @@ export default function CertificateModal({
                                              data,
                                              loading
                                          }) {
-                                            const [error, setError] = useState('');
-                                            const {
-                                                connector,
-                                                library,
-                                                account,
-                                                chainId,
-                                                activate,
-                                                deactivate,
-                                                active,
-                                                errorWeb3Modal
-                                            } = useWeb3React();
+    const [error, setError] = useState('');
+    const [isLoading, setLoading] = useState(false);
+    const {
+        connector,
+        library,
+        account,
+        chainId,
+        activate,
+        deactivate,
+        active,
+        errorWeb3Modal
+    } = useWeb3React();
     if (!data) return <></>;
 
     const ids = ['57896044618658097711785492504343953927315557066662158946655541218820101242881', '57896044618658097711785492504343953927315557066662158946655541218820101242882', '57896044618658097711785492504343953927315557066662158946655541218820101242883']
@@ -56,7 +56,6 @@ export default function CertificateModal({
     const id = data?.['id'];
     const _account = data?.['account']
 
-   
 
     const onClickHandler = async (e) => {
         e.preventDefault();
@@ -78,24 +77,27 @@ export default function CertificateModal({
     const mint =
         async () => {
             try {
-
+                setLoading(true)
                 let signer = await loadProvider()
                 let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
                 let TokenContract = new ethers.Contract(gBPG_addr, TokenABI, signer);
 
-                let approve = await TokenContract.approve(NFT_addr , '100000000000000000000000000')
+                let approve = await TokenContract.approve(NFT_addr, '100000000000000000000000000')
                 let tx1 = await approve.wait()
                 console.log(tx1)
 
-                if(tx1.confirmations > 0){
+                if (tx1.confirmations > 0) {
                     console.log(token_Type)
                     console.log(account)
-                    let mint = await NFTCrowdsaleContract.mintNonFungible(token_Type , [account], [])
+                    let mint = await NFTCrowdsaleContract.mintNonFungible(token_Type, [account], [])
                     await mint.wait()
                 }
-                
+
+                setLoading(false)
+
             } catch (e) {
                 console.error("data", e)
+                setLoading(false)
             }
         }
 
@@ -168,8 +170,9 @@ export default function CertificateModal({
                             </ul>
                         </Grid>
                         <Grid item container alignItems='center' flexDirection='column'>
-                            <Grid item className='mainside'> <a href='#' onClick={onClickHandler}> {btnText} </a></Grid>
-                            <Grid item sx={{ mt: 2 }}> <h6 style={{ color: 'red' }}>some error has occurred</h6> </Grid>
+                            {isLoading ? <CircularProgress color={"secondary"}/> : <Grid item className='mainside'> <a href='#' onClick={onClickHandler}> {btnText} </a></Grid>}
+                            {error &&
+                                <Grid item sx={{mt: 2}}><h6 style={{color: 'red'}}>some error has occurred</h6></Grid>}
                         </Grid>
                     </Grid>
                 </DialogContent>
