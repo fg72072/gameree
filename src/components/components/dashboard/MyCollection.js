@@ -116,7 +116,7 @@ function MyCollection(props) {
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                         <Grid container sx={{mt: 4, mb: 4}}>
                             <Grid item xs={12}>
-                                <div className="content d-flex justify-content-between">
+                                <div className="content d-flex justify-content-between heading-flex-column">
                                     <div className="heading">
                                         <h3>Collections</h3>
                                     </div>
@@ -143,7 +143,7 @@ function MyCollection(props) {
                                         console.log('VALUE -> ',value);
 
                                         if(key === nft.token_id) {
-                                            return  <Grid item xs={3} md={3} lg={3}>
+                                            return  <Grid item sm={4} xs={12} md={4} lg={3}>
                                                 <div className="sell-box-layer-1">
                                                     <div className="sell-box-layer-2">
                                                         <div className="sell-box">
