@@ -19,6 +19,10 @@ import Dashboard from "./components/components/dashboard/Dashboard";
 import { gapi } from "gapi-script";
 import GoogleClientId from "./GoogleClientId";
 import Mapbox from "./components/components/mapbox";
+import DashboardHeader from "./components/components/dashboard/DashboardHeader";
+import DashboardSidebar from "./components/components/dashboard/DashbaordSidebar";
+import NftSell from "./components/components/dashboard/NftSell";
+import MyCollection from "./components/components/dashboard/MyCollection";
 /**
  *  Unimportant 
  * *
@@ -81,7 +85,10 @@ function App() {
 
             <SignUp path="signUp" />
             <BusinessMeeting path="/business-meeting" />
-            <Dashboard path="/dashboard" />
+            <Dashboard path="/dashboard" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <NftSell path="/nft-sell" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <MyCollection path="/my-collection" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+          
           </ScrollTop>
         </PosedRouter>
       </ParallaxProvider>

@@ -49,6 +49,9 @@ $black_col: #2e333c;
 $black_more: #0f0f0f;
 $color: #8364e2;
 $color_more: #403f83;
+$primary:#8364E2;
+$secondary:#131129;
+$bg:#100E22;
 .col-white {
   color: $white;
 }
@@ -67,6 +70,9 @@ body {
   word-spacing: 0px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.dashboard{
+  background-color: $secondary !important;
 }
 #routerhang {
   transform: unset !important;
@@ -5297,74 +5303,7 @@ blockquote {
   margin-bottom: 15px;
 }
 
-// ======================Dashboard=======================
-.color-primary {
-  color: #545352;
-}
-.content {
-  .heading {
-    flex-basis: 30%;
-    h3,
-    h6,
-    h5 {
-      color: #545352;
-    }
-  }
-  .buttons {
-    .withdraw-btn {
-      background-color: #f1f1f1;
-      color: #545352 !important;
-      margin-left: 40px;
-    }
-  }
-}
 
-.dashboard-box.first-box {
-  background-color: #f1f1f1 !important;
-  border: none;
-}
-.dashboard-box {
-  border: 0.6px solid #707070;
-  border-radius: 10px !important;
-  img {
-    width: 50px;
-    height: 50px;
-  }
-}
-.dashboard-nav {
-  .dropdown-custom {
-    color: #0d0c22 !important;
-    &::after {
-      color: #8364e2;
-    }
-  }
-  .item-dropdown {
-    right: 50% !important;
-  }
-}
-.main-nav {
-  .logo {
-    flex-basis: 30%;
-    img {
-      width: 150px;
-    }
-  }
-  .login-box {
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-    flex-basis: 50%;
-    p {
-      padding: 0px 20px;
-      color: #0d0c22;
-    }
-    button {
-      margin: 0px 10px;
-    }
-  }
-}
-/*** media all ***/
 @media only screen and (max-width: 1199px) {
   .item-dropdown {
     position: relative;
@@ -5526,3 +5465,259 @@ blockquote {
 }
 @media only screen and (max-width: 378px) {
 }
+
+
+// ======================Dashboard=======================
+.color-primary {
+  color: #545352;
+}
+.content {
+  .heading {
+    flex-basis: 30%;
+    h3,
+    h6,
+    h5 {
+      color: #545352;
+    }
+  }
+  .buttons {
+    .withdraw-btn {
+      background-color: #f1f1f1;
+      color: #545352 !important;
+      margin-left: 40px;
+    }
+  }
+}
+
+.dashboard-box.first-box {
+  background-color: #f1f1f1 !important;
+  border: none;
+}
+.dashboard-box {
+  border: 0.6px solid #707070;
+  border-radius: 10px !important;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+.dashboard-nav {
+  .dropdown-custom {
+    color: #0d0c22 !important;
+    &::after {
+      color: #8364e2;
+    }
+  }
+  .item-dropdown {
+    right: 50% !important;
+  }
+}
+.main-nav {
+  .logo {
+    flex-basis: 30%;
+    img {
+      width: 150px;
+    }
+  }
+  .login-box {
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+    flex-basis: 50%;
+    p {
+      padding: 0px 20px;
+      color: #0d0c22;
+    }
+    button {
+      margin: 0px 10px;
+    }
+  }
+}
+/*** media all ***/
+
+// fazal csss 
+.dashboard .css-bxl8u1-MuiPaper-root-MuiAppBar-root{
+  position: unset !important;
+  z-index: 0 !important;
+  margin-left: 0px !important;
+  background-color: $secondary!important;
+  box-shadow: none !important;
+}
+.dashboard main.MuiBox-root.css-1w1gdci{
+  background-color: $secondary !important;
+
+}
+.dashboard .css-1x9x74r-MuiDrawer-docked .MuiDrawer-paper{
+  background-color: $secondary !important;
+}
+.dashboard .MuiDrawer-root.MuiDrawer-docked.css-1x9x74r-MuiDrawer-docked{
+  border-right: 1px solid #202E4E;
+}
+.dashboard .logo.d-flex{
+  background-color: $bg !important;
+  justify-content: center;
+
+} 
+.dashboard .logo.d-flex a > img{
+  background-color: $bg !important;
+}
+.dashboard .css-1bjbl22-MuiButtonBase-root-MuiListItemButton-root{
+  background-color: transparent !important;
+  border: none !important;
+  color: $primary !important;
+  box-shadow: none !important;
+}
+.dashboard .css-13d7886-MuiButtonBase-root-MuiListItemButton-root{
+  border: none !important;
+  color: #949494 !important;
+}
+.dashboard .css-cveggr-MuiListItemIcon-root{
+  min-width: 40px !important;
+}
+.dashboard main header .css-m9mp0w-MuiToolbar-root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.dashboard main header .main-nav .login-box{
+  width: 100% !important;
+  flex-basis: 100%;
+}
+.dashboard .css-wa3e1t-MuiTypography-root{
+  color: white !important;
+}
+.dashboard .content .heading h3, .content .heading h6, .content .heading h5{
+  color: white;
+}
+.dashboard .css-chrqo3-MuiPaper-root{
+  background-color: $bg !important;
+  border-radius: 20px !important;
+  border: none !important;
+  padding: 1rem 1rem !important;
+
+
+}
+.dashboard .dashboard-box.first-box{
+  background-color: $primary!important;
+  border-radius: 20px !important;
+  border: none !important;
+  padding: 1rem 1rem !important;
+
+}
+.dashboard .box-layer-1{
+  background-color: $bg;
+  padding: 1rem 1rem;
+}
+.dashboard .box-layer-2{
+  background-color: #1F193C;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+}
+.dashboard .box-layer-1 .color-primary{
+  color: white !important;
+}
+.dashboard .sell-box-layer-1{
+  background-color: $bg;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+}
+.dashboard .sell-box-layer-2{
+  background-color: #1F193C;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+}
+.dashboard .sell-box{
+  background-color: $bg !important;
+  padding: 1rem 1rem;
+  border-radius: 20px !important;
+  position: relative;
+}
+.dashboard .sell-box .nft-img{
+  width: 100%;
+}
+.dashboard .sell-box .nft-profile{
+  position: absolute;
+  right: 5px;
+  bottom: -20px;
+  width: 49px;
+  height: 49px;
+}
+.dashboard .sell-box-body{
+  margin-top: 2rem;
+}
+.dashboard .sell-box-body h3{
+  color: white;
+  margin-bottom: 4px;
+  font-size: 21px;
+}
+.dashboard .sell-box-body h4{
+  color: white;
+  font-size: 18px;
+}
+.dashboard .sell-flex-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard .sell-flex-price p{
+  color: $primary;
+  font-size: 17px;
+}
+.dashboard .nft-footer{
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.dashboard .custom-mt-1{
+  margin-top: 1rem !important;
+}
+.dashboard .css-m9mp0w-MuiToolbar-root{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.dashboard .css-m9mp0w-MuiToolbar-root .nav-dropdown{
+  margin-left: 7px !important;
+}
+.dashboard .p-relative{
+  position: relative !important;
+}
+// certificate css 
+.certificate-modal .css-rnmm7m-MuiPaper-root-MuiDialog-paper{
+  border-radius: 20px !important;
+  background-color: $secondary;
+}
+.certificate-modal .MuiDialogTitle-root{
+  background-color: $primary !important;
+  text-align: center;
+  color: white;
+}
+.building-img{
+  width: 90%;
+}
+.certificate-modal .MuiDialogContent-root{
+  padding: 3rem 1rem !important;
+}
+.certificate-modal .building-detail{
+  color: $primary;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.certificate-modal .building-detail li{
+  width: 29%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  
+}
+.certificate-modal .building-detail li p{
+  margin-bottom: 0;
+  font-size: 18px;
+
+}
+.certificate-modal .building-detail li span{
+  font-size: 14px;
+}
+// end fazal css 
