@@ -184,13 +184,13 @@ const deposit = async () => {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container sx={{ mt: 4, mb: 4 }}>
               <Grid item xs={12}>
-                <div className="content d-flex">
+                <div className="content d-flex heading-flex-column">
                   <div className="heading">
                     <h3>Account Balances</h3>
                   </div>
                   <div className="buttons mainside">
-                    {/* <a className="#" onClick={deposit}>Deposit</a> */}
-                    <button className="#" onClick={deposit}>Deposit</button>
+                    <a className="#" onClick={deposit}>Deposit</a>
+                    {/* <button className="#" onClick={deposit}>Deposit</button> */}
                     <a className="withdraw-btn">WithDraw</a>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ const deposit = async () => {
             </Grid>
             <Grid container spacing={3}>
               {/* small boxes */}
-              <Grid item xs={4} md={4} lg={3}>
+              <Grid item xs={12} sm={4} md={4} lg={3}>
                 <div className="box-layer-1">
                 <div className="box-layer-2">
                 <Paper
@@ -230,7 +230,7 @@ const deposit = async () => {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={4} md={4} lg={3}>
+              <Grid item xs={12} sm={4} md={4} lg={3}>
               <div className="box-layer-1">
                 <div className="box-layer-2">
                 <Paper
@@ -253,7 +253,7 @@ const deposit = async () => {
                 </div>
               </Grid>
 
-              <Grid item xs={4} md={4} lg={3}>
+              <Grid item xs={12} sm={4} md={4} lg={3}>
               <div className="box-layer-1">
                 <div className="box-layer-2">
                 <Paper
@@ -276,7 +276,7 @@ const deposit = async () => {
                 </div>
               </Grid>
 
-              <Grid item xs={4} md={4} lg={3}>
+              <Grid item xs={12} sm={4} md={4} lg={3}>
               <div className="box-layer-1">
                 <div className="box-layer-2">
                 <Paper

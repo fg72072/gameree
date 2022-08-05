@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import {Provider} from "react-redux";
 import store from "./store";
 import "./assets/animated.css";
+import "./assets/responsive.scss";
+import './assets/fontawesome/css/all.css'
 
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "../node_modules/elegant-icons/style.css";

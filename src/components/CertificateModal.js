@@ -19,6 +19,8 @@ export default function CertificateModal({
                                              data,
                                              loading
                                          }) {
+    const [error, setError] = useState('');
+
 
     if (!data) return <></>;
 
@@ -41,7 +43,6 @@ export default function CertificateModal({
     const id = data?.['id'];
     const _account = data?.['account']
 
-    const [error, setError] = useState('');
 
     const onClickHandler = (e) => {
         e.preventDefault();
@@ -60,20 +61,20 @@ export default function CertificateModal({
         }
     }
 
-    const transfer =
-        async () => {
-            try {
+    // const transfer =
+    //     async () => {
+    //         try {
 
-                let signer = await loadProvider()
-                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
-                const account = await signer.getAddress()
-                console.log(account, to, id)
-                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
-                tx = await tx.wait()
-            } catch (e) {
-                console.error("data", e)
-            }
-        }
+    //             let signer = await loadProvider()
+    //             let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
+    //             const account = await signer.getAddress()
+    //             console.log(account, to, id)
+    //             let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
+    //             tx = await tx.wait()
+    //         } catch (e) {
+    //             console.error("data", e)
+    //         }
+    //     }
 
 
     return (
