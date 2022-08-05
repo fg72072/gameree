@@ -24,7 +24,80 @@ export default function CertificateModal({
                                              data,
                                              loading
                                          }) {
+                                            const [error, setError] = useState('');
+                                            const {
+                                                connector,
+                                                library,
+                                                account,
+                                                chainId,
+                                                activate,
+                                                deactivate,
+                                                active,
+                                                errorWeb3Modal
+                                            } = useWeb3React();
+    if (!data) return <></>;
 
+    const ids = ['57896044618658097711785492504343953927315557066662158946655541218820101242881', '57896044618658097711785492504343953927315557066662158946655541218820101242882', '57896044618658097711785492504343953927315557066662158946655541218820101242883']
+    const token_Type = '57896044618658097711785492504343953927315557066662158946655541218820101242880'
+    const buildingName = data?.['Building name'] || '';
+    const buildingNumber = data?.['Building number'] || ''
+    const name = data?.['name'] || '';
+    const noOfUnits = data?.['No of Units'] || ''
+    const totalAreaInSqt = data?.['Total gross area in sqt of building'] || '';
+    const city = data?.['city'] || '';
+    const currentNFT_Price = data?.['current NFT price'] || '';
+    const priceInEuro = data?.['current price in £'];
+    const image = data?.['image'];
+    const owner = data?.['owner'] || '';
+    const postCode = data?.['postcode'];
+    const priceInPound = data?.['price in sq in £'];
+    const roadName = data?.['road name'];
+    const streetName = data?.['street name'];
+    const id = data?.['id'];
+    const _account = data?.['account']
+
+   
+
+    const onClickHandler = async (e) => {
+        e.preventDefault();
+        mint()
+    }
+
+    const loadProvider = async () => {
+        try {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            return provider.getSigner();
+        } catch (e) {
+            console.log("loadProvider: ", e)
+
+        }
+    }
+
+    const mint =
+        async () => {
+            try {
+
+                let signer = await loadProvider()
+                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
+                let TokenContract = new ethers.Contract(gBPG_addr, TokenABI, signer);
+
+                let approve = await TokenContract.approve(NFT_addr , '100000000000000000000000000')
+                let tx1 = await approve.wait()
+                console.log(tx1)
+
+                if(tx1.confirmations > 0){
+                    console.log(token_Type)
+                    console.log(account)
+                    let mint = await NFTCrowdsaleContract.mintNonFungible(token_Type , [account], [])
+                    await mint.wait()
+                }
+                
+            } catch (e) {
+                console.error("data", e)
+            }
+        }
 
 
     return (

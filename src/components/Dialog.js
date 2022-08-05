@@ -76,31 +76,11 @@ const CustomDialog = ({toggleModal, status, data, loading }) => {
     const detailInfo =  '3' || buildingData?.place_name.split(',')[3] + buildingData?.place_name.split(',')[4]
 
     const copyAddressHandler = (text) => navigator.clipboard.writeText(text)
-    const loadProvider = async () => {
-        try {
-            const web3Modal = new Web3Modal();
-            const connection = await web3Modal.connect();
-            const provider = new ethers.providers.Web3Provider(connection);
-            return provider.getSigner();
-        } catch (e) {
-            console.log("loadProvider: ", e)
 
-
+    const handleTransfer =async () => {
+        alert('Transfer Data');
+        
     }
-    const transfer =
-        async () => {
-            try {
-
-                let signer = await loadProvider()
-                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
-                const account = await signer.getAddress()
-                console.log(account, to, id)
-                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
-                tx = await tx.wait()
-            } catch (e) {
-                console.error("data", e)
-            }
-        }
 
     const loadProvider = async () => {
         try {
@@ -123,7 +103,8 @@ const CustomDialog = ({toggleModal, status, data, loading }) => {
                 let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
                 const account = await signer.getAddress()
                 console.log(account, to, id)
-                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
+                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id)
+ - 1], 1, [])
                 tx = await tx.wait()
             } catch (e) {
                 console.error("data", e)
