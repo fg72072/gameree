@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -43,6 +43,17 @@ import DashboardLogo from "../../../assets/images/logo-dashboard.png";
 import UserIcon from "../../../assets/images/user.png";
 import NotificationIcon from "../../../assets/images/notification.png";
 import CertificateModal from "../../CertificateModal";
+
+
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+
+import {NFT_addr , gBPG_addr} from '../../../contract/addresses'
+import TokenABI from '../../../contract/GBPG.json'
+import NFTABI from '../../../contract/GameRee1155.json'
+
+
+import Web3Modal from 'web3modal'
 // import {
 //   whiteLogo,
 //   userIcon,
@@ -67,6 +78,85 @@ const mdTheme = createTheme({
 });
 
 function DashboardContent(props) {
+
+  const [balance, setBalance] = useState();
+  const [tokenBalance, setTokenBalance] = useState();
+
+
+  const {
+    connector,
+    library,
+    account,
+    chainId,
+    activate,
+    deactivate,
+    active,
+    errorWeb3Modal
+} = useWeb3React();
+
+
+useEffect(()=>{
+  (async ()=>{
+    
+    if(library && account){
+
+      try {
+        const _balance = await library.getBalance(account);
+        setBalance(ethers.utils.formatEther(_balance));
+        getDetail()
+      }
+      catch(error){
+        console.log("Error ",error.message);
+        setBalance("0");
+      }
+      return () => {
+        setBalance(undefined);
+      };
+    }
+    console.log(account)
+  })();
+}, [library, account, chainId]);
+
+
+const loadProvider = async () => {
+  try {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+      return provider.getSigner();
+  }
+  catch (e) {
+      console.log("loadProvider: ", e)
+      
+  }
+}
+
+const getDetail = async () => {
+  try {
+
+      let signer = await loadProvider()
+      let TokenContract = new ethers.Contract(gBPG_addr, TokenABI, signer);
+      let _balance = await TokenContract.balanceOf(account)
+      setTokenBalance(ethers.utils.formatEther(_balance))
+
+  }catch(error){
+
+  }
+}
+
+const deposit = async () => {
+  try {
+
+      let signer = await loadProvider()
+      let TokenContract = new ethers.Contract(gBPG_addr, TokenABI, signer);
+      let _deposit = await TokenContract.deposit({value:"1"})
+      let tx = _deposit.wait()
+
+  }catch(error){
+    console.log(error)
+  }
+}
+
   return (
     <ThemeProvider theme={mdTheme} className="dashboard" backgroundColor>
       <Box sx={{ display: "flex", backgroundColor: "#FFF" }} className="dashboard">
@@ -96,10 +186,11 @@ function DashboardContent(props) {
               <Grid item xs={12}>
                 <div className="content d-flex">
                   <div className="heading">
-                    <h3>Account Balance</h3>
+                    <h3>Account Balances</h3>
                   </div>
                   <div className="buttons mainside">
-                    <a className="#">Deposit</a>
+                    {/* <a className="#" onClick={deposit}>Deposit</a> */}
+                    <button className="#" onClick={deposit}>Deposit</button>
                     <a className="withdraw-btn">WithDraw</a>
                   </div>
                 </div>
@@ -108,7 +199,9 @@ function DashboardContent(props) {
                 <div className="content">
                   <div className="heading">
                     <h6>Wallet Balance</h6>
-                    <h5 className="mt-4">$ 5,150,208,345</h5>
+                    <h5 className="mt-4"> {balance}</h5>
+                    <h6>GBPG Balance</h6>
+                    <h5 className="mt-4">{tokenBalance}</h5>
                   </div>
                 </div>
               </Grid>

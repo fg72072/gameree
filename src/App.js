@@ -1,5 +1,6 @@
 import { Router, Location, Redirect } from "@reach/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import { createGlobalStyle } from "styled-components";
 import BusinessMeeting from "./components/components/gameree/business-meeting";
 import Party from "./components/components/gameree/party";
@@ -23,6 +24,7 @@ import DashboardHeader from "./components/components/dashboard/DashboardHeader";
 import DashboardSidebar from "./components/components/dashboard/DashbaordSidebar";
 import NftSell from "./components/components/dashboard/NftSell";
 import MyCollection from "./components/components/dashboard/MyCollection";
+import { useEagerConnect, useInactiveListener } from './hooks/useEagerConnect';
 /**
  *  Unimportant 
  * *
@@ -60,6 +62,11 @@ gapi.load("client:auth2", () => {
 });
 
 function App() {
+
+  const [errorMessage, setErrorMessage] = useState();
+  useEagerConnect(setErrorMessage);
+  useInactiveListener();
+  
   return (
     <div className="wraper">
       <GlobalStyles />

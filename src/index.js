@@ -29,8 +29,9 @@ import { Web3ReactProvider } from '@web3-react/core';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
+    <Web3ReactProvider getLibrary={getLibrary}>
     <Provider store={store}>
-        <Web3ReactProvider getLibrary={getLibrary}>
+        
             <MoralisProvider
                 serverUrl="https://wx27lerry8wp.usemoralis.com:2053/server"
                 appId="6Tnv3d3wbzE6y6yPIJH36u8Q07dmqMq7vrmjrDNC"
@@ -40,8 +41,9 @@ root.render(
                 <App/>
                 {/* </GoogleReCaptchaProvider> */}
             </MoralisProvider>
-        </Web3ReactProvider>
+        
     </Provider>
+    </Web3ReactProvider>
 );
 
 reportWebVitals();
