@@ -103,7 +103,8 @@ const CustomDialog = ({toggleModal, status, data, loading }) => {
                 let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
                 const account = await signer.getAddress()
                 console.log(account, to, id)
-                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id) - 1], 1, [])
+                let tx = await NFTCrowdsaleContract.safeTransferFrom(account, to, ids[Number(id)
+ - 1], 1, [])
                 tx = await tx.wait()
             } catch (e) {
                 console.error("data", e)

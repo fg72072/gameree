@@ -1,0 +1,136 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+    /* CSS */
+
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    /* CSS */
+
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    /* CSS */
+
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    /* CSS */
+
+}
+
+/* Extra Small Devices, Phones */
+@media  (max-width : 480px) {
+
+}
+
+
+/* Tablets */
+@media  (max-width : 767px) {
+.dashboard{
+  .heading-flex-column{
+    flex-direction: column;
+  }
+  .heading-flex-column .mainside a{
+    margin-left: 0;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .heading-flex-column .mainside a:not(:first-child){
+    margin-left: 1rem;
+  }
+  .heading-flex-column .heading{
+    margin-bottom: 0;
+  }
+  .css-bxl8u1-MuiPaper-root-MuiAppBar-root{
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    display: -webkit-box!important;
+  }
+  main header .css-m9mp0w-MuiToolbar-root{
+    width: auto !important;
+  }
+  .content .heading{
+    flex-basis: 100%;
+  }
+}
+}
+
+
+/* Tablets */
+@media  (max-width : 991px) {
+    .dashboard {
+      .css-3ugafn-MuiDrawer-docked .MuiDrawer-paper{
+        width: 0px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+      }
+      .dashboard-nav{
+        display: flex;
+        align-items: center;
+      }
+      .open-sidebar{
+        display: block;
+        font-size: 18px;
+        cursor: pointer;
+        margin-right: 2rem;
+      }
+      .sidebar-logo-div{
+        display: flex;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      .close-sidebar{
+        display: block;
+        color: white;
+        font-size: 18px;
+        margin-right: 1rem;
+      }
+    }
+}
+
+
+

@@ -165,15 +165,21 @@ const handleClose = () => {
 const ref2 = useOnclickOutside(() => {
   closeMenu2();
 });
+function closeSidebar()
+{
+  let element = document.getElementsByClassName("MuiDrawer-paper")[0];
+  element.style.width = '0px'
+}
 const popOpen = Boolean(anchorEl);
 const id = popOpen ? "simple-popover" : undefined;
     return <>
     <Drawer variant="permanent" open={open}>
-    <div className="logo d-flex ">
+    <div className="logo d-flex sidebar-logo-div">
         <a href="/">
           {" "}
           <img src={DashboardLogo} alt="logo" />{" "}
         </a>
+        <i class="fa-solid fa-xmark close-sidebar" onClick={closeSidebar}></i>
     </div>
     <Toolbar
       sx={{

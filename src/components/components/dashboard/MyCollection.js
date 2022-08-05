@@ -39,7 +39,7 @@ function MyCollection(props) {
           }
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container sx={{ mt: 4, mb: 4 }}>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={12} lg={12}>
                 <div className="content d-flex">
                   <div className="heading">
                     <h3>My Collections</h3>
@@ -51,7 +51,7 @@ function MyCollection(props) {
             </Grid>
             <Grid container spacing={3}>
               {/* small boxes */}
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -67,7 +67,7 @@ function MyCollection(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -83,7 +83,7 @@ function MyCollection(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -99,7 +99,7 @@ function MyCollection(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -115,38 +115,7 @@ function MyCollection(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={collectionnft} className="nft-img"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100 mt-2">
-                         <a className="d-block custom-mt-1">My Collection</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={collectionnft} className="nft-img"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100 mt-2">
-                         <a className="d-block custom-mt-1">My Collection</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
+         
               {/* Chart */}
             </Grid>
           </Container>

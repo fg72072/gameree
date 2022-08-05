@@ -40,7 +40,7 @@ function NftSell(props) {
           }
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container sx={{ mt: 4, mb: 4 }}>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={12} lg={12}>
                 <div className="content d-flex">
                   <div className="heading">
                     <h3>NFTs Sell</h3>
@@ -52,7 +52,7 @@ function NftSell(props) {
             </Grid>
             <Grid container spacing={3}>
               {/* small boxes */}
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12}  md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -73,7 +73,7 @@ function NftSell(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -94,7 +94,7 @@ function NftSell(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
+              <Grid item sm={4} xs={12} md={4} lg={3}>
                 <div className="sell-box-layer-1">
                 <div className="sell-box-layer-2">
                     <div className="sell-box">
@@ -115,90 +115,7 @@ function NftSell(props) {
                 </div>
                 </div>
               </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={sellnft} className="nft-img"/>
-                        <img src={sellprofile} className="nft-profile"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                        <div className="sell-flex-price">
-                            <p>3h 1m 10s</p>
-                            <p>0.15 BTC</p>
-                        </div>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100">
-                         <a className="d-block">Sell</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={sellnft} className="nft-img"/>
-                        <img src={sellprofile} className="nft-profile"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                        <div className="sell-flex-price">
-                            <p>3h 1m 10s</p>
-                            <p>0.15 BTC</p>
-                        </div>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100">
-                         <a className="d-block">Sell</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={sellnft} className="nft-img"/>
-                        <img src={sellprofile} className="nft-profile"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                        <div className="sell-flex-price">
-                            <p>3h 1m 10s</p>
-                            <p>0.15 BTC</p>
-                        </div>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100">
-                         <a className="d-block">Sell</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
-              <Grid item xs={3} md={3} lg={3}>
-                <div className="sell-box-layer-1">
-                <div className="sell-box-layer-2">
-                    <div className="sell-box">
-                        <img src={sellnft} className="nft-img"/>
-                        <img src={sellprofile} className="nft-profile"/>
-                    </div>
-                    <div className="sell-box-body">
-                        <h3>McDonald’s</h3>
-                        <h4>291B Oxford St, W1C 2DT, UK</h4>
-                        <div className="sell-flex-price">
-                            <p>3h 1m 10s</p>
-                            <p>0.15 BTC</p>
-                        </div>
-                    </div>
-                    <div className="buttons mainside nft-footer w-100">
-                         <a className="d-block">Sell</a>
-                     </div>
-                </div>
-                </div>
-              </Grid>
+              
 
               {/* Chart */}
             </Grid>
