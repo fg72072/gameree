@@ -99,6 +99,11 @@ function DashboardHeader()
     const ref2 = useOnclickOutside(() => {
     closeMenu2();
     });
+    function openSidebar()
+    {
+      let element = document.getElementsByClassName("MuiDrawer-paper")[0];
+      element.style.width = '250px'
+    }
     const popOpen = Boolean(anchorEl);
     const id = popOpen ? "simple-popover" : undefined;
     return <>
@@ -113,6 +118,9 @@ function DashboardHeader()
             <div className="nav-dropdown d-flex mx-3">
               <div className="navbar-item px-3">
                 <div ref={ref2} className="dashboard-nav">
+                <div>
+                  <i class="fa-solid fa-bars open-sidebar" onClick={()=>openSidebar()}></i>
+                  </div>
                   <div
                     className="dropdown-custom dropdown-toggle btn"
                     onClick={handleBtnClick2}
