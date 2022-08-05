@@ -53,10 +53,10 @@ const CustomDialog = ({toggleModal, status, data, loading }) => {
     const owner = data?.['owner'] || '';
     const postCode = data?.['postcode'];
     const priceInPound = data?.['price in sq in £'];
-    const roadName = data?.['road name'];
+    const roadName = data?.['road name'] || '';
     const streetName = data?.['street name'];
     const id = data?.['id'];
-    const _account =data?.['account'] 
+    const _account =data?.['account']
   
 
     const buildingArea = '1' ||buildingData?.place_name.split(',')[1] + buildingData?.place_name.split(',')[2];
@@ -74,33 +74,7 @@ const CustomDialog = ({toggleModal, status, data, loading }) => {
     
 
 
-    const loadProvider = async () => {
-        try {
-            const web3Modal = new Web3Modal();
-            const connection = await web3Modal.connect();
-            const provider = new ethers.providers.Web3Provider(connection);
-            return provider.getSigner();
-        }
-        catch (e) {
-            console.log("loadProvider: ", e)
-            
-        }
-    }
 
-    const transfer = 
-        async () => {
-            try {
-
-                let signer = await loadProvider()
-                let NFTCrowdsaleContract = new ethers.Contract(NFT_addr, ABI, signer);
-                const account =await signer.getAddress()
-                console.log(account,to,id)
-                let tx = await NFTCrowdsaleContract.safeTransferFrom(account , to , ids[Number(id) - 1] , 1 , [])
-                tx = await tx.wait()
-            } catch (e) {
-                console.error("data", e)
-            }
-        }
 
     return (
         <Dialog
