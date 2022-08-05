@@ -77,12 +77,19 @@ const Mapbox = () => {
                 let arr = []
                 const caccount = await signer.getAddress()
                 for (let index = 1; index < 4; index++) {
-                    let uri = await NFTCrowdsaleContract.uri(index)
-                    // console.log(uri)
-                    let owner = await NFTCrowdsaleContract.ownerOf(ids[index - 1])
+                    
+                   let uri = await NFTCrowdsaleContract.uri(index)
+                    console.log(uri)
+                    let owner 
+                    try {
+                    owner = await NFTCrowdsaleContract.ownerOf(ids[index - 1])
+                        
+                    } catch (error) {
+                    owner = '0x0000000000000000000000000000000000000000'
+                    }
                     let response = await fetch(uri, {method: 'GET'})
                     const data = await response.json();
-                    // console.log({response,data})
+                    console.log({response,data})
                     data.owner = owner
                     data.id = index
                     data.account = caccount
