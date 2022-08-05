@@ -18,6 +18,7 @@ const useLoadMapbox = () => {
         // console.log(map.current.getBounds())
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
+            // style: "mapbox://styles/haseebabbasi00/cl5a6otee00f414ll9zhf5v46",
             style: "mapbox://styles/haseebabbasi00/cl5a6otee00f414ll9zhf5v46",
             // style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
