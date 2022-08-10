@@ -42,7 +42,7 @@ import ProfileIcon from "../../../assets/images/profile.png";
 import DashboardLogo from "../../../assets/images/logo-dashboard.png";
 import UserIcon from "../../../assets/images/user.png";
 import NotificationIcon from "../../../assets/images/notification.png";
-const drawerWidth = 300;
+const drawerWidth = 250;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
@@ -54,7 +54,7 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.leavingScreen,
     }),
     ...(open && {
-      marginLeft: drawerWidth,
+      // marginLeft: drawerWidth,
       // width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
@@ -107,7 +107,7 @@ function DashboardHeader()
     const popOpen = Boolean(anchorEl);
     const id = popOpen ? "simple-popover" : undefined;
     return <>
-      <AppBar position="absolute" open={open}>
+      <AppBar position="absolute" open={open} className="custom-header">
           <Toolbar
             className="main-nav"
             sx={{

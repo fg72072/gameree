@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import {Provider} from "react-redux";
 import store from "./store";
 import "./assets/animated.css";
-import "./assets/responsive.scss";
+
 import './assets/fontawesome/css/all.css'
 
 import "../node_modules/font-awesome/css/font-awesome.min.css";
@@ -21,7 +21,8 @@ import "./assets/style_grey.scss";
 import {MoralisProvider} from "react-moralis";
 import {getLibrary} from "./helpers/web3Library";
 import { Web3ReactProvider } from '@web3-react/core';
-
+import "./assets/responsive.scss";
+import "./assets/dashboard.css";
 
 // import {
 //   GoogleReCaptchaProvider,

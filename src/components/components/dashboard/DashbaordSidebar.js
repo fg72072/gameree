@@ -80,7 +80,7 @@ const MainListItems = (props) => {
 const nav = useNavigate()
 return   <React.Fragment>
 <ListItemButton
-  className="justify-content-center px-5 mt-2 list-main"
+  className="justify-content-center px-5 mt-2 list-main active-list-main"
   sx={{
     border: "1px solid #f1f1f1",
     backgroundColor: "#F1F1F1",
@@ -173,7 +173,7 @@ function closeSidebar()
 const popOpen = Boolean(anchorEl);
 const id = popOpen ? "simple-popover" : undefined;
     return <>
-    <Drawer variant="permanent" open={open}>
+    <Drawer variant="permanent" open={open} className="custom-sidebar">
     <div className="logo d-flex sidebar-logo-div">
         <a href="/">
           {" "}

@@ -83,12 +83,15 @@
   .heading-flex-column .heading{
     margin-bottom: 0;
   }
-  .css-bxl8u1-MuiPaper-root-MuiAppBar-root{
+  main header .main-nav{
     overflow-x: scroll !important;
     overflow-y: hidden !important;
     display: -webkit-box!important;
   }
-  main header .css-m9mp0w-MuiToolbar-root{
+  .main-nav .login-box{
+    flex-basis: 50% !important;
+  }
+  main header .main-nav{
     width: auto !important;
   }
   .content .heading{
@@ -101,7 +104,7 @@
 /* Tablets */
 @media  (max-width : 991px) {
     .dashboard {
-      .css-3ugafn-MuiDrawer-docked .MuiDrawer-paper{
+      .custom-sidebar .MuiDrawer-paper{
         width: 0px;
         position: fixed;
         top: 0;
