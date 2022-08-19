@@ -25,6 +25,7 @@ import DashboardSidebar from "./components/components/dashboard/DashbaordSidebar
 import NftSell from "./components/components/dashboard/NftSell";
 import MyCollection from "./components/components/dashboard/MyCollection";
 import { useEagerConnect, useInactiveListener } from './hooks/useEagerConnect';
+import { Admin, BlockUser, ManageClients, Transaction, UserTracking } from "./components/components/dashboard/admin";
 /**
  *  Unimportant 
  * *
@@ -95,6 +96,11 @@ function App() {
             <Dashboard path="/dashboard" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
             <NftSell path="/nft-sell" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
             <MyCollection path="/collection" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <Admin path="/admin/dashboard" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <BlockUser path="/admin/block-user" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <ManageClients path="/admin/clients" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <Transaction path="/admin/transaction" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
+            <UserTracking path="/admin/user-tracking" header={<DashboardHeader/>} sidebar={<DashboardSidebar/>}/>
           
           </ScrollTop>
         </PosedRouter>

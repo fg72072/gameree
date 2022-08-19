@@ -5099,7 +5099,7 @@ blockquote {
 }
 .mainside .de-menu-notification .popshow {
   cursor: default;
-  width: 250px;
+  width: 270px;
   position: absolute;
   background: #fff;
   border-radius: 5px;
@@ -5176,7 +5176,7 @@ blockquote {
 }
 .mainside .de-menu-profile .popshow {
   cursor: default;
-  width: 250px;
+  width: 270px;
   position: absolute;
   background: #fff;
   border-radius: 5px;

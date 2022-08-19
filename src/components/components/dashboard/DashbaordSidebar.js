@@ -46,10 +46,16 @@ import nft_sell from "../../../assets/images/nft-sell.png";
 import collection from "../../../assets/images/collection.png";
 import sidebar_profile from "../../../assets/images/sidebar-profile.png";
 import activity from "../../../assets/images/activity.png";
+import blockuser from "../../../assets/images/block-user.png";
+import clients from "../../../assets/images/clients.png";
+import location from "../../../assets/images/location.png";
+import transaction from "../../../assets/images/transaction.png";
 import { useNavigate } from "@reach/router";
 
-const drawerWidth = 250;
-
+const drawerWidth = 270;
+const auth = localStorage.getItem('user');
+// localStorage.removeItem('user');
+//  localStorage.setItem('user','admin');
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -78,7 +84,74 @@ const Drawer = styled(MuiDrawer, {
 }));
 const MainListItems = (props) => {
 const nav = useNavigate()
+console.log(auth)
 return   <React.Fragment>
+{
+  auth == 'admin' ?
+// admin links 
+<>
+<ListItemButton
+  className="justify-content-center px-5 mt-2 list-main active-list-main"
+  sx={{
+    border: "1px solid #f1f1f1",
+    backgroundColor: "#F1F1F1",
+    boxShadow: "0px 2px 5px 2px rgb(116 113 113 / 27%);",
+  }} onClick={(e)=>nav('/admin/dashboard')}>
+  <ListItemIcon>
+    <img src={DashboardIcon} />
+  </ListItemIcon>
+  <ListItemText className="text-grey" primary="Dashboard" />
+</ListItemButton>
+
+<ListItemButton
+  className="justify-content-center px-5 mt-2 list-main"
+  sx={{
+    border: "1px solid #f1f1f1",
+  }}
+  onClick={(e)=>nav('/admin/block-user')}>
+  <ListItemIcon>
+    <img src={blockuser} />
+  </ListItemIcon>
+  <ListItemText className="text-grey" primary="Block" />
+</ListItemButton>
+<ListItemButton
+  className="justify-content-center px-5 mt-2 list-main"
+  sx={{
+    border: "1px solid #f1f1f1",
+  }}
+  onClick={(e)=>nav('/admin/clients')}>
+  <ListItemIcon>
+    <img src={clients} />
+  </ListItemIcon>
+  <ListItemText className="text-grey" primary="Managing Clients" />
+</ListItemButton>
+<ListItemButton
+  className="justify-content-center px-5 mt-2 list-main"
+  sx={{
+    border: "1px solid #f1f1f1",
+  }}
+  onClick={(e)=>nav('/nft-sell')}>
+  <ListItemIcon>
+    <img src={location} />
+  </ListItemIcon>
+  <ListItemText className="text-grey" primary="User Tracking" />
+</ListItemButton>
+<ListItemButton
+  className="justify-content-center px-5 mt-2 list-main"
+  sx={{
+    border: "1px solid #f1f1f1",
+  }}
+  onClick={(e)=>nav('/nft-sell')}>
+  <ListItemIcon>
+    <img src={transaction} />
+  </ListItemIcon>
+  <ListItemText className="text-grey" primary="Financial Transaction" />
+</ListItemButton>
+</>
+// end admin links  
+:
+  // user links 
+<>
 <ListItemButton
   className="justify-content-center px-5 mt-2 list-main active-list-main"
   sx={{
@@ -91,7 +164,6 @@ return   <React.Fragment>
   </ListItemIcon>
   <ListItemText className="text-grey" primary="Dashboard" />
 </ListItemButton>
-
 <ListItemButton
   className="justify-content-center px-5 mt-2 list-main"
   sx={{
@@ -136,6 +208,11 @@ return   <React.Fragment>
   </ListItemIcon>
   <ListItemText className="text-grey" primary="Acount Activity" />
 </ListItemButton>
+</>
+// end user links
+}
+
+
 </React.Fragment>
 
 }

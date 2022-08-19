@@ -42,7 +42,7 @@ import ProfileIcon from "../../../assets/images/profile.png";
 import DashboardLogo from "../../../assets/images/logo-dashboard.png";
 import UserIcon from "../../../assets/images/user.png";
 import NotificationIcon from "../../../assets/images/notification.png";
-const drawerWidth = 250;
+const drawerWidth = 270;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
@@ -76,6 +76,9 @@ const NavLink = (props) => (
   );
 function DashboardHeader()
 {
+    const auth = localStorage.getItem('user');
+  // localStorage.removeItem('user');
+  //  localStorage.setItem('user','admin');
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(true);
     const [TotalUsers, setTotalUsers] = useState("loading ...");
@@ -102,7 +105,7 @@ function DashboardHeader()
     function openSidebar()
     {
       let element = document.getElementsByClassName("MuiDrawer-paper")[0];
-      element.style.width = '250px'
+      element.style.width = '270px'
     }
     const popOpen = Boolean(anchorEl);
     const id = popOpen ? "simple-popover" : undefined;
@@ -116,10 +119,13 @@ function DashboardHeader()
           >
             
             <div className="nav-dropdown d-flex mx-3">
-              <div className="navbar-item px-3">
+              <i class="fa-solid fa-bars open-sidebar" onClick={()=>openSidebar()}></i>
+              {
+                auth == "user" ?
+                <>
+                <div className="navbar-item px-3">
                 <div ref={ref2} className="dashboard-nav">
                 <div>
-                  <i class="fa-solid fa-bars open-sidebar" onClick={()=>openSidebar()}></i>
                   </div>
                   <div
                     className="dropdown-custom dropdown-toggle btn"
@@ -170,6 +176,8 @@ function DashboardHeader()
                  
                 </div>
               </div>
+                </>:''
+              }
             </div>
             <div className="login-box d-flex align-items-center justify-content-end">
               {" "}

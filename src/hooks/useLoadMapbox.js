@@ -19,7 +19,7 @@ const useLoadMapbox = () => {
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             // style: "mapbox://styles/haseebabbasi00/cl5a6otee00f414ll9zhf5v46",
-            style: "mapbox://styles/haseebabbasi00/cl5a6otee00f414ll9zhf5v46",
+            style: "mapbox://styles/gameree/cl6uq8g6l000515s6h9v9s26h",
             // style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
             zoom: zoom,

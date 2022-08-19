@@ -12,9 +12,10 @@ import {ethers} from "ethers";
 import Web3Modal from 'web3modal'
 import CustomDialog from "../../Dialog";
 import CertificateModal from "../../CertificateModal";
+import MintCertificateModal from "../../MintCertificateModal";
 
-
-mapboxgl.accessToken = `pk.eyJ1IjoiaGFzZWViYWJiYXNpMDAiLCJhIjoiY2wyejVqcWVsMDkzcjNjbDdocWI4dzA0cSJ9.mB8mVHePsaB0wmqbIE9f1Q`;
+// mapboxgl.accessToken = `pk.eyJ1IjoiZ2FtZXJlZSIsImEiOiJjbDVqaWk3aDUwMGdqM2NxcjZoMGhjanprIn0.vvzASm5oVT3sGtBNakNSQg`
+mapboxgl.accessToken = `pk.eyJ1IjoiZ2FtZXJlZSIsImEiOiJjbDVqaWk3aDUwMGdqM2NxcjZoMGhjanprIn0.vvzASm5oVT3sGtBNakNSQg`;
 
 const Mapbox = () => {
 
@@ -120,7 +121,7 @@ const Mapbox = () => {
             setProfileIsOpen(false);
 
             const {lngLat, point, target, originalEvent} = e;
-            // console.log({lngLat, point, target, originalEvent})
+            console.log({lngLat, point, target, originalEvent})
 
             // Create a default Marker and add it to the map.
             // const marker1 = new mapboxgl.Marker(
@@ -132,15 +133,16 @@ const Mapbox = () => {
             // console.log(marker1)
 
             const features = _map.queryRenderedFeatures(e.point);
-            // console.log('IN_MAPBOX', features);
+            console.log('IN_MAPBOX', features[0]);
 
             //should return click type either its building
-            const clickType = features[0]?.sourceLayer;
+            const clickType = features[0].properties.type;
+            
 
-            console.log('IN_MAPBOX', clickType);
+            // console.log('IN_MAPBOX', clickType);
 
             // console.log("in mapbox ", features[0].sourceLayer);
-            if (clickType === "C100" || clickType === "features_6-0bwjdi") {
+            if (clickType === 1 || clickType === 1) {
                 setLoading(true);
                 console.log('USE_EFFECT', metadata)
                 const point = e.lngLat;
@@ -199,7 +201,7 @@ const Mapbox = () => {
             const _map = map.current;
 
             _map.on('load', () => {
-                /*_map.addSource('maine', {
+                _map.addSource('maine', {
                     'type': 'geojson',
                     'data': {
                         "features": [
@@ -5175,30 +5177,21 @@ const Mapbox = () => {
                         ],
                         "type": "FeatureCollection"
                     }
-                })*/
+                })
 
                 // Add a new layer to visualize the polygon.
-                /*_map.addLayer({
-                    'id': 'maine',
-                    'type': 'fill',
-                    'source': 'maine', // reference the data source
-                    'layout': {},
-                    'paint': {
-                        'fill-color': '#0080ff', // blue color fill
-                        'fill-opacity': 0.5
-                    }
-                });*/
-
-                /*_map.addLayer({
-                 'id': 'features_6-0bwjdi',
-                 'type': 'fill',
-                 'source': 'features_6-0bwjdi', // reference the data source
-                 'layout': {},
-                 'paint': {
-                     'fill-color': '#0080ff', // blue color fill
-                     'fill-opacity': 0.5
-                 }
-             });*/
+                // _map.addLayer({
+                //     'id': 'maine',
+                //     'type': 'fill',
+                //     'source': 'maine', // reference the data source
+                //     'layout': {},
+                //     'paint': {
+                //         'fill-color': '#0080ff', // blue color fill
+                //         'fill-opacity': 0.5
+                //     }
+                // });
+              
+               
                 const layers = _map.getStyle().layers;
                 const labelLayerId = layers.find(
                     (layer) => layer.type === 'symbol' && layer.layout['text-field']
@@ -5270,9 +5263,9 @@ const Mapbox = () => {
             <div style={{width: '50px', height: '50px', position: 'absolute', top: 30}}/>
         </div>
         {
-            isMinted
+            isMinted 
                 ? (<CertificateModal toggleModal={toggleModal} status={modalIsOpen} data={buildingData} loading={loading}/>)
-                : (<CustomDialog toggleModal={toggleModal} status={modalIsOpen} data={buildingData} loading={loading}/>)
+                : (<MintCertificateModal toggleModal={toggleModal} status={modalIsOpen} data={buildingData} loading={loading}/>)
         }
 
 
